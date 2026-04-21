@@ -10,15 +10,32 @@ export default function Contact() {
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log(data);
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    reset();
     
-    // Hide success message after 5 seconds
-    setTimeout(() => setIsSuccess(false), 5000);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "87401e4a-dbb9-4cf8-b4e7-8224498c47ac",
+          ...data
+        }),
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        setIsSuccess(true);
+        reset();
+      }
+    } catch (error) {
+      console.error("Error submitting form", error);
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setIsSuccess(false), 5000);
+    }
   };
 
   return (
