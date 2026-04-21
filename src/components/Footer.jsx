@@ -4,6 +4,24 @@ import { Share2, Code2, Mail, Phone } from 'lucide-react';
 import Logo from './Logo';
 
 export default function Footer() {
+  const handleShare = async (e) => {
+    e.preventDefault();
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Renovo | Premium Web Development Agency',
+          text: 'Check out Renovo, a premium web development agency crafting modern, fast, and scalable digital experiences.',
+          url: window.location.origin,
+        });
+      } catch (error) {
+        console.log('Error sharing:', error);
+      }
+    } else {
+      navigator.clipboard.writeText(window.location.origin);
+      alert('Link copied to clipboard!');
+    }
+  };
+
   return (
     <footer className="bg-[#050812] pt-16 pb-8 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,8 +35,12 @@ export default function Footer() {
               A premium web development agency crafting modern, fast, and scalable digital experiences.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Share2 className="w-5 h-5" /></a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Code2 className="w-5 h-5" /></a>
+              <button onClick={handleShare} className="text-gray-400 hover:text-white transition-colors cursor-pointer" aria-label="Share">
+                <Share2 className="w-5 h-5" />
+              </button>
+              <a href="https://github.com/revanth-saukar/renovo-agency" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="Code">
+                <Code2 className="w-5 h-5" />
+              </a>
             </div>
           </div>
           
