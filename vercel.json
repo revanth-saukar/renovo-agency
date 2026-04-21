@@ -1,0 +1,9 @@
+{
+  "name": "renovo-agency",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
