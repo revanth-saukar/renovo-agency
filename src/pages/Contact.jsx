@@ -85,7 +85,7 @@ export default function Contact() {
                   <div>
                     <h4 className="font-medium text-white mb-1">Call Us</h4>
                     <p className="text-gray-400 text-sm">+91 9449264142</p>
-                    <p className="text-gray-400 text-sm">Available Mon-Fri</p>
+                    <p className="text-gray-400 text-sm">Available 7 days a week</p>
                   </div>
                 </div>
               </div>
